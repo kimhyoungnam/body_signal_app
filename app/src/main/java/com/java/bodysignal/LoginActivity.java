@@ -5,6 +5,7 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -16,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -30,26 +32,28 @@ public class LoginActivity extends AppCompatActivity {
     private CallbackManager callbackManager;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
-
+    protected void onCreate(Bundle savedInstanceState) {
+        FacebookSdk.sdkInitialize(getApplicationContext());
         super.onCreate(savedInstanceState);
+        AppEventsLogger.activateApp(this);
         setContentView(R.layout.activity_login);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+
     }
 
-    public void buttonOnclick(View view){
+    public void buttonOnclick(View view) {
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
 
 
         LoginManager.getInstance().logInWithPublishPermissions(LoginActivity.this,
-                Arrays.asList("public_profile","email"));
+                Arrays.asList("public_profile", "email"));
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(final LoginResult result) {
@@ -58,9 +62,9 @@ public class LoginActivity extends AppCompatActivity {
                 request = GraphRequest.newMeRequest(result.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                     @Override
                     public void onCompleted(JSONObject user, GraphResponse response) {
-                        if(response.getError() != null){
+                        if (response.getError() != null) {
 
-                        }else {
+                        } else {
                             Log.i("TAG", "user: " + user.toString());
                             Log.i("TAG", "AccessToken: " + result.getAccessToken().getToken());
                             setResult(RESULT_OK);
@@ -80,52 +84,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onError(FacebookException error) {
                 Log.e("test", "Error: " + error);
+                Toast.makeText(LoginActivity.this, "페이스북 로그인 에러, 에러 내용 : "+error, Toast.LENGTH_SHORT).show();
                 //finish();
             }
 
             @Override
             public void onCancel() {
                 //finish();
+
             }
         });
     }
-
-
-
-
-    /*
-    public void onClick(View view) {
-        FacebookCallbackManager = CallbackManager.Factory.create();
-
-
-        SigninFacebookButton = (LoginButton) findViewById(R.id.login_button);
-        SigninFacebookButton.setReadPermissions("email");
-        // If using in a fragment
-
-
-        // Callback registration
-        SigninFacebookButton.registerCallback(FacebookCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                // App code
-            }
-
-            @Override
-            public void onCancel() {
-                // App code
-            }
-
-            @Override
-            public void onError(FacebookException exception) {
-                // App code
-            }
-        });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        FacebookCallbackManager.onActivityResult(requestCode, resultCode, data);
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-     */
 }
