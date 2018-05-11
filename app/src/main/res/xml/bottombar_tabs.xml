@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <tabs>
+        <tab
+            id="@+id/tab_home"
+            icon="@drawable/ic_action_home"
+            title="홈"
+            barColorWhenSelected="#ff9999" />
+
+        <tab
+            id="@+id/tab_weather"
+            icon="@drawable/ic_action_weather"
+            title="날씨" />
+        <tab
+            id="@+id/tab_totalStatic"
+            icon="@drawable/ic_action_static"
+            title="전체통계"/>
+        <tab
+            id="@+id/tab_setting"
+            icon="@drawable/ic_action_setting"
+            title="설정"/>
+
+    </tabs>
+</PreferenceScreen>
