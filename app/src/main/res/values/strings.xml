@@ -3,4 +3,11 @@
     <string name="facebook_app_id">140877996668899</string>
     <string name="fb_login_protocol_scheme">fb140877996668899</string>
     <string name="login">login</string>
+    <string name="help">이 어플리케이션은 건설업계 현장직 근로자를 위해 만들어졌으며
+        근로자들의 체온 맥박 등 생체 신호를 측정하여 위험 상황에 대비할 수 있도록 하는 시스템입니다.
+        관리자가 어플리케이션을 활용하여 각각의 근로자의 현 상태를 확인하여 근로자들의 안전을 보장해줍니다.
+        This application is designed for construction workers.
+        It is a system to measure the vital signs such as body
+        temperature pulse of workers and to prepare for the dangerous situation.
+        Administrators use the application to ensure the safety of workers by checking the current status of each worker.</string>
 </resources>
