@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "154076521339",
+    "firebase_url": "https://bodysignal-70bcf.firebaseio.com",
+    "project_id": "bodysignal-70bcf",
+    "storage_bucket": "bodysignal-70bcf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154076521339:android:2aff5c9a974749d8",
+        "android_client_info": {
+          "package_name": "com.java.bodysignal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "154076521339-3h7jnmubsepslbu35o3nk3e4ddc9j4hg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.java.bodysignal",
+            "certificate_hash": "2be6361f20ad4620cd6f08b51b55f161590d30d7"
+          }
+        },
+        {
+          "client_id": "154076521339-vg91fjbkbemvgr2v6kgtoghc34l15pel.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFQkosfGzfhptd2ME6CcFvTuq7npFervU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "154076521339-vg91fjbkbemvgr2v6kgtoghc34l15pel.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
