@@ -65,7 +65,8 @@ public class LoginActivity extends AppCompatActivity {
                         if (response.getError() != null) {
 
                         } else {
-
+                            Log.i("TAG", "user: " + user.toString());
+                            Log.i("TAG", "AccessToken: " + result.getAccessToken().getToken());
                             setResult(RESULT_OK);
 
                             Intent i = new Intent(LoginActivity.this, MainActivity.class);
