@@ -30,35 +30,45 @@ public class LoginActivity extends AppCompatActivity {
     //CallbackManager FacebookCallbackManager;
 
     private CallbackManager callbackManager;
-
+    private LoginButton fbButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         FacebookSdk.sdkInitialize(getApplicationContext());
         super.onCreate(savedInstanceState);
+        callbackManager = CallbackManager.Factory.create();
         AppEventsLogger.activateApp(this);
         setContentView(R.layout.activity_login);
+
+
+        fbButton = findViewById(R.id.fb_login_button);
+
+
+        fbButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fbLogin();
+            }
+        });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        callbackManager.onActivityResult(requestCode, resultCode, data);
+
         super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
 
     }
 
-    public void buttonOnclick(View view) {
+    public void fbLogin() {
 
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        callbackManager = CallbackManager.Factory.create();
-
-
-        LoginManager.getInstance().logInWithPublishPermissions(LoginActivity.this,
-                Arrays.asList("public_profile", "email"));
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
+
             public void onSuccess(final LoginResult result) {
 
-                GraphRequest request;
+                 Log.d("Tag",  result.getAccessToken().getToken().toString());
+                final GraphRequest request;
+
                 request = GraphRequest.newMeRequest(result.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                     @Override
                     public void onCompleted(JSONObject user, GraphResponse response) {
@@ -91,6 +101,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onCancel() {
                 //finish();
+
+                Log.e("test", "ㅇㅇemfjddhㅇ");
 
             }
         });

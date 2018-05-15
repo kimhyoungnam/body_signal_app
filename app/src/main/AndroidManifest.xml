@@ -17,12 +17,12 @@
         <!-- splash -->
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashTheme"><intent-filter>
+            android:theme="@style/SplashTheme">
+            <intent-filter>
         <action android:name="android.intent.action.MAIN" />
-
-        <category android:name="androi
-            d.intent.category.LAUNCHER" />
+        <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
      <!-- login -->
@@ -42,7 +42,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
@@ -59,7 +58,6 @@
         <activity android:name=".SettingActivity" />
         <activity android:name=".WorkerRegisterActivity" />
         <activity android:name=".AccountActivity">
-
         </activity>
     </application>
 

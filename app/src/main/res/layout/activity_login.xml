@@ -25,8 +25,7 @@
         android:orientation="horizontal">
 
     <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button"
-
+        android:id="@+id/fb_login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="200dp"
@@ -43,7 +42,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"/>
 
-</LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="150dp"
@@ -67,4 +66,5 @@
             android:textColor="#FFFFFF"
             android:text="가입" />
     </LinearLayout>
+
 </LinearLayout>
