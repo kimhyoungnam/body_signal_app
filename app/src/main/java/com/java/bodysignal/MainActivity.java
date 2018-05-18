@@ -23,10 +23,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
-
+import android.support.v4.app.Fragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -35,9 +36,41 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent = new Intent(this, PersonalActivity.class);
-        startActivity(intent);
-        finish();
 
+
+        LinearLayout button1 = (LinearLayout) findViewById(R.id.button1);
+        LinearLayout button2 = (LinearLayout) findViewById(R.id.button2);
+        LinearLayout button3 = (LinearLayout) findViewById(R.id.button3);
+        LinearLayout button4 = (LinearLayout) findViewById(R.id.button4);
+
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                getFragmentManager().beginTransaction().replace(R.id.main_frame,new Home()).commit();
+
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().beginTransaction().replace(R.id.main_frame,new allChart()).commit();
+
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().beginTransaction().replace(R.id.main_frame,new Weather()).commit();
+            }
+        });
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().beginTransaction().replace(R.id.main_frame,new Setting()).commit();
+
+            }
+        });
     }
 }

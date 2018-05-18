@@ -3,4 +3,8 @@
     <string name="facebook_app_id">140877996668899</string>
     <string name="fb_login_protocol_scheme">fb140877996668899</string>
     <string name="login">login</string>
+    <string name="nav_home">home</string>
+    <string name="nav_weather">weather</string>
+    <string name="nav_chart">chart</string>
+    <string name="nav_setting">setting</string>
 </resources>
