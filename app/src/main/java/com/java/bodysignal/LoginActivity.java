@@ -20,6 +20,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,11 +39,15 @@ public class LoginActivity extends AppCompatActivity {
 
     private CallbackManager callbackManager;
     private LoginButton fbButton;
-    private DatabaseReference mDatabase= FirebaseDatabase.getInstance().getReference();;
+    private DatabaseReference mDatabase= FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference data=mDatabase.child("users");
+    private ChildEventListener mChildEventListener;
+
     private EditText id;
     private EditText password;
     private Button login;
     private Button Register;
+
     String newId,pwd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +67,19 @@ public class LoginActivity extends AppCompatActivity {
         login= (Button) findViewById(R.id.button1);
         Register= (Button) findViewById(R.id.button2);
 
+        data.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                   Log.d("value", snapshot.child("id").getValue(String.class));
+                }
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         login.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 newId = id.getText().toString();
