@@ -7,4 +7,11 @@
     <string name="nav_weather">weather</string>
     <string name="nav_chart">chart</string>
     <string name="nav_setting">setting</string>
+    <string name="email">email</string>
+    <string name="name">name</string>
+    <string name="password">password</string>
+    <string name="confirmpassword">password 확인</string>
+    <string name="회원가입">회원가입</string>
+    <string name="signup_password">signup_password</string>
+    <string name="signup_confirmpassword">signup_confirmpassword</string>
 </resources>
