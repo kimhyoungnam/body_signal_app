@@ -65,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "이름 혹은 아이디를 생략하지말고 입력해주세요 ", Toast.LENGTH_LONG).show();
 
                     }else {
-                        mDatabase.child("users").child(sname).setValue(r);
+                        mDatabase.child("users").child(id).setValue(r);
 
                     }
                 } else {
