@@ -1,4 +1,4 @@
-package com.java.bodysignal;
+package com.java.bodysignal.models;
 
 public class registerDetail {
     String name, id,password;
@@ -6,6 +6,11 @@ public class registerDetail {
     public registerDetail(){
 
     }
+    public registerDetail(String id,String password){
+        this.id=id;
+        this.password=password;
+    }
+
     public String getId(){
         return this.id;
     }

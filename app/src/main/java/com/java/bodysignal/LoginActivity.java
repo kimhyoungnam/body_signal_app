@@ -9,9 +9,7 @@ import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.google.firebase.auth.FacebookAuthProvider;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,10 +25,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.java.bodysignal.models.registerDetail;
 
 import org.json.JSONObject;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -47,8 +47,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText password;
     private Button login;
     private Button Register;
-
-    String newId,pwd;
+    ArrayList<registerDetail> loginArray;
+    String newId,checkId,pwd,checkpwd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         FacebookSdk.sdkInitialize(getApplicationContext());
@@ -67,12 +67,20 @@ public class LoginActivity extends AppCompatActivity {
         login= (Button) findViewById(R.id.button1);
         Register= (Button) findViewById(R.id.button2);
 
+        newId = id.getText().toString();
+        checkpwd = password.getText().toString();
+        loginArray=new ArrayList<registerDetail>();
         data.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                   Log.d("value", snapshot.child("id").getValue(String.class));
+                    checkId=snapshot.child("id").getValue(String.class);
+                    pwd=snapshot.child("password").getValue(String.class);
+                        loginArray.add(new registerDetail(checkId,pwd));
                 }
+
             }
 
             @Override
@@ -80,19 +88,27 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
         login.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 newId = id.getText().toString();
-                pwd = password.getText().toString();
-                if(newId.equals("")||pwd.equals("")) {
-                    Toast.makeText(getApplicationContext(), "로그인을 먼저 해주세요!", Toast.LENGTH_LONG).show();
-                }else{
-                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(i);
-                    finish();
+                checkpwd = password.getText().toString();
 
+                for (int j = 0; j <loginArray.size(); j++) {
+
+                        if(loginArray.get(j).getId().equals(newId) && loginArray.get(j).getPassword().equals(checkpwd)) {
+                            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(i);
+                            finish();
+                            return;
+                        }
+                    }
+                if (newId.equals("") || pwd.equals("")) {
+                    Toast.makeText(getApplicationContext(), "로그인을 먼저 해주세요!", Toast.LENGTH_LONG).show();
+                }else {
+                    Toast.makeText(getApplicationContext(), "아이디와 비밀번호가 일치하지않습니다", Toast.LENGTH_LONG).show();
                 }
-            }
+                }
 
         });
 
