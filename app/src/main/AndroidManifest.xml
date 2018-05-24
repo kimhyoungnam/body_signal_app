@@ -54,10 +54,10 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".PersonalActivity" />
-        <activity android:name=".HelpActivity" />
-        <activity android:name=".WorkerRegisterActivity" />
-        <activity android:name=".AccountActivity" />
+        <activity android:name=".fragment.Personal" />
+        <activity android:name=".fragment.Help" />
+        <activity android:name=".fragment.WorkerRegister" />
+        <activity android:name=".fragment.AccountModify" />
     </application>
 
 </manifest>
