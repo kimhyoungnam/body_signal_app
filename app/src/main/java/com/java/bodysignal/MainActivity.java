@@ -38,14 +38,14 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().replace(R.id.main_frame,new allChart()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_frame,new Weather()).commit();
 
             }
         });
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().replace(R.id.main_frame,new Weather()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.main_frame,new allChart()).commit();
             }
         });
         button4.setOnClickListener(new View.OnClickListener() {

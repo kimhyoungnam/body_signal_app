@@ -8,6 +8,8 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.java.bodysignal.LoginActivity;
 import com.java.bodysignal.R;
 import android.app.Activity;
 
@@ -59,6 +61,7 @@ public class Setting extends Fragment {
                     break;
                 case R.id.button4:
                     button4.setSelected(true);
+
                     moveButton4();
                     break;
 
@@ -80,6 +83,7 @@ public class Setting extends Fragment {
 
     }
     public void moveButton4(){
+
         getFragmentManager().beginTransaction().replace(R.id.main_frame,new Help()).commit();
 
     }
