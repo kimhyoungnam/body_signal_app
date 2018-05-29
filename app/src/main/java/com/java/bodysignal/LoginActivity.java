@@ -70,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
         newId = id.getText().toString();
         checkpwd = password.getText().toString();
         loginArray=new ArrayList<registerDetail>();
+
         data.addValueEventListener(new ValueEventListener() {
 
             @Override

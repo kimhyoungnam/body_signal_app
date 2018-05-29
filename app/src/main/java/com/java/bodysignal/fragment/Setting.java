@@ -9,9 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.java.bodysignal.LoginActivity;
 import com.java.bodysignal.R;
-import android.app.Activity;
 
 
 import android.widget.Button;

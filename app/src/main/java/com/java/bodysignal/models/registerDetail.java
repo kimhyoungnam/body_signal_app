@@ -6,9 +6,16 @@ public class registerDetail {
     public registerDetail(){
 
     }
+
     public registerDetail(String id,String password){
         this.id=id;
         this.password=password;
+    }
+
+    public registerDetail(String id,String name,String pwd){
+        this.id=id;
+        this.name=name;
+        this.password=pwd;
     }
 
     public String getId(){

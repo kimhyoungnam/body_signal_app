@@ -20,12 +20,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getFragmentManager().beginTransaction().replace(R.id.main_frame,new Home()).commit();
 
         LinearLayout button1 = (LinearLayout) findViewById(R.id.button1);
         LinearLayout button2 = (LinearLayout) findViewById(R.id.button2);
         LinearLayout button3 = (LinearLayout) findViewById(R.id.button3);
         LinearLayout button4 = (LinearLayout) findViewById(R.id.button4);
-
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override

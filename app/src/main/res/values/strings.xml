@@ -29,4 +29,16 @@
     <string name="weather_drizzle">&#xf01c;</string>
 
     <string name="place_not_found">Sorry, no weather data found.</string>
+
+
+    <string name="help">이 어플리케이션은 아두이노를 이용한 사용자의 위험 상황 제어 시스템으로
+        건설업계 근로자를 위해 만들어졌으며 근로자들의 체온 맥박 등 생체 신호를 측정하여
+        위험 상황에 대비할 수 있도록 하는 시스템입니다.
+        덥거나 추운 날씨에 영향 받는 건설업계 근로자들 뿐 만 아니라
+        근로자들을 관리하는 기업의 입장에서도 근로자들의 안전을 보장할 수 있습니다.
+    This application is a user risk control system using Arduino.
+        It is designed for workers in the construction industry and measures the vital signs such as body temperature pulse of workers.
+        It is a system that can prepare for a dangerous situation.
+        Not only the construction industry workers affected by hot or cold weather
+        The safety of workers can also be guaranteed from the perspective of a company that manages workers</string>
 </resources>

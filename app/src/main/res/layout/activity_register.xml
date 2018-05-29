@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="70dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:paddingLeft="130dp"
         android:paddingRight="70dp"
-        android:paddingTop="200dp"
-        android:orientation="vertical">
+        android:paddingTop="200dp">
 
 
         <EditText
@@ -20,17 +22,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="이름" />
+
         <EditText
             android:id="@+id/editText2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="ID"
             android:inputType="" />
+
         <EditText
             android:id="@+id/editText3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password" />
+
         <EditText
             android:id="@+id/editText4"
             android:layout_width="match_parent"
@@ -45,10 +50,40 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
-            android:background="#DA9F93"
-            android:textColor="#FFFFFF"
-            android:text="등록" />
+            android:layout_marginRight="15dp"
+            android:background="@drawable/button"
+            android:text="등록"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/image"
+        android:paddingTop="200dp"
+        android:paddingLeft="80dp"
+        />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="130dp"
+        android:layout_height="283dp"
+        android:paddingLeft="70dp"
+        android:paddingTop="250dp"
+        android:src="@drawable/id" />
+
+    <ImageView
+        android:layout_width="121dp"
+        android:layout_height="345dp"
+        android:paddingLeft="80dp"
+        android:paddingTop="280dp"
+        android:src="@drawable/password" />
+
+    <ImageView
+        android:layout_width="123dp"
+        android:layout_height="403dp"
+        android:paddingLeft="80dp"
+        android:paddingTop="310dp"
+        android:src="@drawable/check" />
+
+</RelativeLayout>

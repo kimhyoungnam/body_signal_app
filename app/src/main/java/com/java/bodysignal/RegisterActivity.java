@@ -1,5 +1,6 @@
 package com.java.bodysignal;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -58,6 +59,10 @@ public class RegisterActivity extends AppCompatActivity {
 
                     }else {
                         mDatabase.child("users").child(id).setValue(r);
+                        Toast.makeText(getApplicationContext(), " 가입완료 ", Toast.LENGTH_LONG).show();
+                        Intent i = new Intent(RegisterActivity.this, MainActivity.class);
+                        startActivity(i);
+                        finish();
 
                     }
                 } else {
