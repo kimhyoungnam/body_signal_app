@@ -5,111 +5,203 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-        //상단
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="147dp"
-
+        android:layout_height="0dp"
+        android:layout_weight="9"
         android:orientation="horizontal">
 
         <FrameLayout
             android:id="@+id/main_frame"
-            android:layout_width="473dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent">
-
             <Button
-                android:id="@+id/breakButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginLeft="220dp"
                 android:layout_marginTop="50dp"
+                android:layout_marginLeft="220dp"
                 android:background="@drawable/button"
                 android:text="Break"
-                android:textColor="#FFFFFF" />
-
+                android:textColor="#FFFFFF"
+                />
             <Button
-                android:id="@+id/calling"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginLeft="290dp"
                 android:layout_marginTop="50dp"
+                android:layout_marginLeft="290dp"
                 android:background="@drawable/button"
                 android:text="119"
-                android:textColor="#FFFFFF" />
-
+                android:textColor="#FFFFFF"
+                />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2px"
-                android:layout_marginTop="140dp"
-                android:background="#D3D3D3" />
+                android:layout_marginTop="140dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:text="이름 "
+                android:layout_marginTop="150dp"
+                android:layout_marginLeft="30dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="맥박"
+                android:layout_marginTop="150dp"
+                android:layout_marginLeft="110dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="체온"
+                android:layout_marginTop="150dp"
+                android:layout_marginLeft="190dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="개인정보"
+                    android:layout_marginTop="150dp"
+                    android:layout_marginLeft="290dp"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:layout_marginTop="180dp"/>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:text="김유림"
+                    android:layout_width="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="210dp"/>
+                <TextView
+                    android:text="김형남"
+                    android:layout_width="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"/>
+                <TextView
+                    android:text="위연정"
+                    android:layout_width="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"/>
+                <TextView
+                    android:text="차성은"
+                    android:layout_width="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"/>
+                <TextView
+                    android:text="최혜지"
+                    android:layout_width="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="200dp"
+                    android:layout_marginLeft="240dp"
+                    />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="240dp"
+                    />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="240dp"
+                    />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="240dp"
+                    />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="240dp"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="300dp"
+                    android:layout_marginTop="200dp"
+                    android:background="@drawable/image"
+                   />
+
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="300dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/image"
+                   />
+
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="300dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/image"
+                    />
+
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="300dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/image"
+                   />
+
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="300dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/image"
+                    />
+
+
+
+            </LinearLayout>
         </FrameLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:text="이름 " />
-        </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:text="맥박 " />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:text="체온 " />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="69dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:text="개인정보 " />
-        </LinearLayout>
-
-
-    </LinearLayout>
 </LinearLayout>

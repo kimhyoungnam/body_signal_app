@@ -13,16 +13,12 @@ import com.java.bodysignal.R;
 
 
 public class Home extends Fragment {
-     public  Button calling, breakButton;
-    @Nullable
-    @Override
+
+
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_home,container,false);
-        calling = (Button)view.findViewById( R.id.calling);
-        breakButton =   (Button)view.findViewById( R.id.breakButton);
-     //   calling.setOnClickListener(myListener);
-       // breakButton .setOnClickListener(myListener);
-        return view;
+        return inflater.inflate(R.layout.fragment_home,container,false);
+
+
     }
 
 
