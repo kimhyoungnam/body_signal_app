@@ -94,10 +94,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 newId = id.getText().toString();
                 checkpwd = password.getText().toString();
-
+                registerDetail r = registerDetail.getRegisterObject();
                 for (int j = 0; j <loginArray.size(); j++) {
 
                         if(loginArray.get(j).getId().equals(newId) && loginArray.get(j).getPassword().equals(checkpwd)) {
+                            r.setId(newId);
                             Intent i = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(i);
                             finish();

@@ -3,12 +3,14 @@ package com.java.bodysignal.fragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.java.bodysignal.LoginActivity;
 import com.java.bodysignal.R;
 
 
@@ -82,7 +84,11 @@ public class Setting extends Fragment {
     }
     public void moveButton4(){
 
-        getFragmentManager().beginTransaction().replace(R.id.main_frame,new Help()).commit();
+        Intent intent = new Intent(getActivity().getApplication(), LoginActivity.class);
+        startActivity(intent);
+        getActivity().finish();
 
     }
+
+
 }

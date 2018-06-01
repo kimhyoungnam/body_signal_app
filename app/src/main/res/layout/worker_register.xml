@@ -16,19 +16,23 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="이름" />
         <EditText
+            android:id="@+id/age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="나이"
             android:inputType="" />
         <EditText
+            android:id="@+id/number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="전화번호" />
         <EditText
+            android:id="@+id/phoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -36,6 +40,7 @@
 
 
         <Button
+            android:id="@+id/button"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

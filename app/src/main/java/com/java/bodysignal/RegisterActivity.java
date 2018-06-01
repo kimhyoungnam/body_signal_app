@@ -47,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
                 check = checkpwd.getText().toString();
                 // setting
 
-                registerDetail r = new registerDetail();
+                registerDetail r = registerDetail.getRegisterObject();
                 r.setName(sname);
                 r.setId(id);
                 r.setPassword(password);

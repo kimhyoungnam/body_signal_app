@@ -1,24 +1,18 @@
 package com.java.bodysignal.models;
 
 public class workerDetail {
-    String name, id,password;
+    String manager,name, age,number,phoneNumber;
 
     public workerDetail(){
 
     }
 
 
-    public String getId(){
-        return this.id;
+    public String getAge(){
+        return this.age;
     }
-    public void setId(String id){
-        this.id=id;
-    }
-    public void setPassword(String pwd){
-        this.password=pwd;
-    }
-    public String getPassword(){
-        return this.password;
+    public void setAge(String age){
+        this.age=age;
     }
     public String getName() {
         return this.name;
@@ -26,5 +20,19 @@ public class workerDetail {
     public void setName(String name){
         this.name=name;
     }
+    public void setNumber(String number){
+        this.number=number;
+    }
+    public String getNumber(){
+        return this.number;
+    }
+    public void setPhoneNumber(String number){
+        this.phoneNumber=phoneNumber;
+    }
+    public String getphoneNumber(){
+        return this.phoneNumber;
+    }
+    public void setManager(String manager){this.manager=manager;}
+    public String getManager(){return this.manager;}
 
 }

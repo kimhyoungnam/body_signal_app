@@ -3,9 +3,12 @@ package com.java.bodysignal.models;
 public class registerDetail {
     String name, id,password;
 
+    private static registerDetail registerObject;
+
     public registerDetail(){
 
     }
+
 
     public registerDetail(String id,String password){
         this.id=id;
@@ -17,7 +20,13 @@ public class registerDetail {
         this.name=name;
         this.password=pwd;
     }
+    public static registerDetail getRegisterObject(){
+        if (registerObject == null) {
+            registerObject =new registerDetail();
+        }
+        return  registerObject;
 
+    }
     public String getId(){
         return this.id;
     }

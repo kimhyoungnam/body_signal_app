@@ -39,10 +39,10 @@ public class Weather extends Fragment {
     }
     public void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
-
         weatherFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/weathericons-regular-webfont.ttf");
         asyncTask.execute("37.222050", "127.187633"); //  asyncTask.execute("Latitude", "Longitude")
     }
+
         Function.placeIdTask asyncTask = new Function.placeIdTask(new Function.AsyncResponse() {
             public void processFinish(String weather_city, String weather_description, String weather_temperature, String weather_humidity, String weather_pressure, String weather_updatedOn, String weather_iconText, String sun_rise) {
                 Log.d("test", "ㅇㅇ123emfjddhㅇ");
