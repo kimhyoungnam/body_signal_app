@@ -21,6 +21,12 @@ public class Weather extends Fragment {
 
    TextView cityField, detailsField, currentTemperatureField, humidity_field, pressure_field, weatherIcon, updatedField;
     Typeface weatherFont;
+
+    public void onCreate(Bundle savedInstance) {
+        super.onCreate(savedInstance);
+        weatherFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/weathericons-regular-webfont.ttf");
+        asyncTask.execute("37.238194", "127.18852"); //  asyncTask.execute("Latitude", "Longitude")
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -37,11 +43,7 @@ public class Weather extends Fragment {
         return view;
 
     }
-    public void onCreate(Bundle savedInstance) {
-        super.onCreate(savedInstance);
-        weatherFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/weathericons-regular-webfont.ttf");
-        asyncTask.execute("37.222050", "127.187633"); //  asyncTask.execute("Latitude", "Longitude")
-    }
+
 
         Function.placeIdTask asyncTask = new Function.placeIdTask(new Function.AsyncResponse() {
             public void processFinish(String weather_city, String weather_description, String weather_temperature, String weather_humidity, String weather_pressure, String weather_updatedOn, String weather_iconText, String sun_rise) {

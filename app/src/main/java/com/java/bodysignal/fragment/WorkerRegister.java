@@ -52,14 +52,15 @@ public class WorkerRegister extends Fragment {
                 workerNum = number.getText().toString();
                 workerPhone = phoneNumber.getText().toString();
 
-                Log.d("hoho", newWorker + workerAge + workerNum + workerPhone);
+
                 w.setName(newWorker);
                 w.setAge(workerAge);
-                w.setNumber(workerNum);
                 w.setPhoneNumber(workerPhone);
+                w.setNumber(workerNum);
+
                 w.setManager(r.getId());
                 mDatabase.child("worker").child(newWorker).setValue(w);
-                Log.d("name",manager);
+                //Log.d("name",manager);
                 showMessage();
             }
         });

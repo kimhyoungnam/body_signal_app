@@ -11,7 +11,7 @@
 
 
     <!-- 스플래시 스크린 액티비티용 테마 -->
-    <style name="SplashTheme" parent="AppTheme">
+    //<style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/splash</item>
     </style>
 </resources>

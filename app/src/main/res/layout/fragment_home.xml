@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <Button
+                android:id="@+id/breakbtn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="50dp"
@@ -27,6 +28,7 @@
                 android:textColor="#FFFFFF"
                 />
             <Button
+                android:id="@+id/emergency"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="50dp"
@@ -75,132 +77,18 @@
                 android:layout_height="2px"
                 android:layout_marginTop="180dp"/>
 
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:text="김유림"
-                    android:layout_width="40dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="210dp"/>
-                <TextView
-                    android:text="김형남"
-                    android:layout_width="40dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"/>
-                <TextView
-                    android:text="위연정"
-                    android:layout_width="40dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"/>
-                <TextView
-                    android:text="차성은"
-                    android:layout_width="40dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"/>
-                <TextView
-                    android:text="최혜지"
-                    android:layout_width="40dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="200dp"
-                    android:layout_marginLeft="240dp"
-                    />
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginLeft="240dp"
-                    />
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginLeft="240dp"
-                    />
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginLeft="240dp"
-                    />
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginLeft="240dp"
-                    />
-
-
-            </LinearLayout>
-
-            <LinearLayout
+            <ListView
+                android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_marginTop="180dp">
 
-                <Button
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="300dp"
-                    android:layout_marginTop="200dp"
-                    android:background="@drawable/image"
-                   />
-
-                <Button
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="300dp"
-                    android:layout_marginTop="30dp"
-                    android:background="@drawable/image"
-                   />
-
-                <Button
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="300dp"
-                    android:layout_marginTop="30dp"
-                    android:background="@drawable/image"
-                    />
-
-                <Button
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="300dp"
-                    android:layout_marginTop="30dp"
-                    android:background="@drawable/image"
-                   />
-
-                <Button
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="300dp"
-                    android:layout_marginTop="30dp"
-                    android:background="@drawable/image"
-                    />
-
-
-
-            </LinearLayout>
+            </ListView>
         </FrameLayout>
+
     </LinearLayout>
+
+
 
 
 

@@ -3,7 +3,12 @@ package com.java.bodysignal.models;
 public class workerDetail {
     String manager,name, age,number,phoneNumber;
 
-    public workerDetail(){
+    public workerDetail(){}
+    public workerDetail(String name,String number,String age){
+        this.name=name;
+        this.number=number;
+
+        this.age=age;
 
     }
 
@@ -26,13 +31,14 @@ public class workerDetail {
     public String getNumber(){
         return this.number;
     }
-    public void setPhoneNumber(String number){
+    public void setPhoneNumber(String phoneNumber){
         this.phoneNumber=phoneNumber;
     }
-    public String getphoneNumber(){
+    public String getPhoneNumber(){
         return this.phoneNumber;
     }
     public void setManager(String manager){this.manager=manager;}
     public String getManager(){return this.manager;}
+
 
 }

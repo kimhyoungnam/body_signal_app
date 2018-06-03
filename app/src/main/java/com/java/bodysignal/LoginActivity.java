@@ -10,11 +10,13 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -42,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     private DatabaseReference mDatabase= FirebaseDatabase.getInstance().getReference();
     private DatabaseReference data=mDatabase.child("users");
     private ChildEventListener mChildEventListener;
-
+    private InputMethodManager imm;
     private EditText id;
     private EditText password;
     private Button login;
@@ -70,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         newId = id.getText().toString();
         checkpwd = password.getText().toString();
         loginArray=new ArrayList<registerDetail>();
+        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
         data.addValueEventListener(new ValueEventListener() {
 
@@ -92,13 +95,16 @@ public class LoginActivity extends AppCompatActivity {
 
         login.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
+                hideKeyboard();
                 newId = id.getText().toString();
                 checkpwd = password.getText().toString();
                 registerDetail r = registerDetail.getRegisterObject();
+                Log.d("new","2");
                 for (int j = 0; j <loginArray.size(); j++) {
-
+                    Log.d("new","1");
                         if(loginArray.get(j).getId().equals(newId) && loginArray.get(j).getPassword().equals(checkpwd)) {
                             r.setId(newId);
+                            Log.d("new",newId);
                             Intent i = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(i);
                             finish();
@@ -110,6 +116,8 @@ public class LoginActivity extends AppCompatActivity {
                 }else {
                     Toast.makeText(getApplicationContext(), "아이디와 비밀번호가 일치하지않습니다", Toast.LENGTH_LONG).show();
                 }
+
+
                 }
 
         });
@@ -190,5 +198,11 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+
+    }
+    private void hideKeyboard() {
+        imm.hideSoftInputFromWindow(id.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(password.getWindowToken(), 0);
     }
 }

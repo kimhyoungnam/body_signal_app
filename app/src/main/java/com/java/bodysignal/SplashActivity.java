@@ -7,8 +7,10 @@ import android.os.Bundle;
 
 public class SplashActivity extends AppCompatActivity {
 
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         try {
             Thread.sleep(3000);
             Intent intent = new Intent(this, LoginActivity.class);
@@ -17,6 +19,7 @@ public class SplashActivity extends AppCompatActivity {
         } catch(InterruptedException e){
             e.printStackTrace();
         }
+
 
     }
 }

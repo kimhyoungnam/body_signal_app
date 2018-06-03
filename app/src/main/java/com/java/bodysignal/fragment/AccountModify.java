@@ -23,6 +23,8 @@ import com.java.bodysignal.R;
 import com.java.bodysignal.models.registerDetail;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class AccountModify extends Fragment{
@@ -93,9 +95,13 @@ public class AccountModify extends Fragment{
             public void onClick(DialogInterface dialogInterface, int i) {
                 for (int j = 0; j <loginArray.size(); j++) {
 
-                    if(loginArray.get(j).getId().equals(checkId) && loginArray.get(j).getName().equals(checkName)) {
+                    if(loginArray.get(j).getId().equals(checkId)) {
                         if(newPwd.equals(recheckpwd)){
 
+                                Map<String,Object> task=new HashMap<String, Object>();
+                                task.put("password", newPwd);
+                                data.child("id").child(checkId).updateChildren(task);
+                                return;
                         }
 
                     }

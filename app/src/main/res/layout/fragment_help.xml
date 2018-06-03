@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.Help">
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -13,6 +14,7 @@
         android:layout_height="536dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:gravity="center"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="31dp">
@@ -20,15 +22,13 @@
 
         <TextView
             android:id="@+id/help"
-            android:textColor="#FFFFFF"
             android:layout_width="274dp"
             android:layout_height="413dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="63dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/box"
             android:paddingTop="30dp"
-            android:text="@string/help" />
+            android:text="@string/help"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 

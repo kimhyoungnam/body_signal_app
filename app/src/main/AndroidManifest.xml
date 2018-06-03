@@ -19,18 +19,16 @@
         android:theme="@style/AppTheme">
 
         <!-- splash -->
-        <activity
-            android:name=".SplashActivity"
-            android:theme="@style/SplashTheme">
-                <intent-filter>
-                    <action android:name="android.intent.action.MAIN" />
-
-                    <category android:name="android.intent.category.LAUNCHER" />
-                </intent-filter>
+        <activity android:name=".SplashActivity"
+                  android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <!-- login -->
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".LoginActivity"/>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -53,6 +51,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+
         <activity android:name=".MainActivity" />
         <activity android:name=".RegisterActivity" />
 
