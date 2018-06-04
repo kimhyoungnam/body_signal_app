@@ -8,13 +8,20 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import java.util.List;import java.util.Set;
-// 3. UUID : Universally Unique IDentifier, 범용 고유 실별자.import java.util.UUID;
+
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.List;
+import java.util.Set;
+
 
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import java.util.UUID;
+
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,6 +37,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.java.bodysignal.MainActivity;
 import com.java.bodysignal.R;
 import com.java.bodysignal.models.MyAdapter;
 import com.java.bodysignal.models.registerDetail;
@@ -38,6 +46,9 @@ import com.java.bodysignal.models.workerDetail;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import app.akexorcist.bluetotohspp.library.BluetoothSPP;
+import app.akexorcist.bluetotohspp.library.BluetoothState;
+import app.akexorcist.bluetotohspp.library.DeviceList;
 
 
 public class Home extends Fragment {
@@ -45,8 +56,9 @@ public class Home extends Fragment {
     public Button breakbtn,emergency;
     public DatabaseReference mDatabase= FirebaseDatabase.getInstance().getReference();
     private DatabaseReference data=mDatabase.child("worker");
-
     private ChildEventListener mChildEventListener;
+
+
     ListView list;
     MyAdapter adapter;
 
@@ -62,7 +74,8 @@ public class Home extends Fragment {
         workerdetail=new ArrayList<workerDetail>();
         getAllMyData();
 
-        // list = (ListView) view.findViewById(R.id.list);
+
+
 
 
         breakbtn.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +114,7 @@ public class Home extends Fragment {
         builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                ((MainActivity)getActivity()).sendData("b");
 
                 Toast.makeText(getActivity().getApplicationContext(), " 전송되었습니다 ", Toast.LENGTH_LONG).show();
 
@@ -122,6 +136,8 @@ public class Home extends Fragment {
         AlertDialog dialog=builder.create();
         dialog.show();
     }
+
+    // 파이어베이스에서 해당 관리자의 작업자 불러오기
     private void getAllMyData(){
 
         ValueEventListener postListener = new ValueEventListener() {
@@ -135,7 +151,7 @@ public class Home extends Fragment {
                     manager=snapshot.child("manager").getValue(String.class);
                     if(r.getId().equals(manager)) {
                         workerdetail.add(new workerDetail(name, phoneNum, age));
-
+                        //adapter에서 list 쓰기
                         adapter = new MyAdapter(getActivity(), workerdetail);
                         list.setAdapter(adapter);
                     }
@@ -147,12 +163,10 @@ public class Home extends Fragment {
 
             }
         };
-
         data.addValueEventListener(postListener);
 
 
     }
-
 
 
 
