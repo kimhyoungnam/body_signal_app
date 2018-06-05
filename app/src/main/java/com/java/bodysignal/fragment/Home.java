@@ -3,6 +3,7 @@ package com.java.bodysignal.fragment;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,6 +20,8 @@ import java.util.Set;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+
+import java.util.Timer;
 import java.util.UUID;
 
 import android.os.Handler;
@@ -54,38 +57,42 @@ import app.akexorcist.bluetotohspp.library.DeviceList;
 public class Home extends Fragment {
 
     public Button breakbtn,emergency;
-    public DatabaseReference mDatabase= FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference data=mDatabase.child("worker");
-    private ChildEventListener mChildEventListener;
 
+    private Timer update;
 
     ListView list;
-    MyAdapter adapter;
+    public MyAdapter adapter;
 
     final registerDetail r= registerDetail.getRegisterObject();
-    final workerDetail w = new workerDetail();
-    ArrayList<workerDetail> workerdetail;
-    String name,age,phoneNum,manager;
+    final workerDetail w = workerDetail.getWorkerObject();
+    public ArrayList<workerDetail> workerdetail;
+    String name,age,phoneNum,manager,temp,pulse;
+
+    @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_home,container,false);
+        Log.d("hoho", "Home oncreateview");
         list = (ListView) view.findViewById(R.id.list);
         breakbtn= (Button)view.findViewById( R.id.breakbtn);
         emergency= (Button)view.findViewById( R.id.emergency);
-        workerdetail=new ArrayList<workerDetail>();
-        getAllMyData();
+        workerdetail =new ArrayList<workerDetail>();
+        return view;
+
+    }
 
 
-
-
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        workerdetail=(((MainActivity)getActivity())).workerdetail;
+        adapter = new MyAdapter(getActivity(), workerdetail);
+        list.setAdapter(adapter);
 
         breakbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 showMessage();
             }
         });
-
         emergency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,10 +106,7 @@ public class Home extends Fragment {
             }
         });
 
-        return view;
-
     }
-
 
     public  void showMessage(){
 
@@ -115,59 +119,25 @@ public class Home extends Fragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 ((MainActivity)getActivity()).sendData("b");
-
-                Toast.makeText(getActivity().getApplicationContext(), " 전송되었습니다 ", Toast.LENGTH_LONG).show();
-
             }
         });
+
         builder.setNeutralButton("취소", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
-
             }
         });
         builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
             }
         });
         AlertDialog dialog=builder.create();
         dialog.show();
     }
 
-    // 파이어베이스에서 해당 관리자의 작업자 불러오기
-    private void getAllMyData(){
-
-        ValueEventListener postListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    name = snapshot.child("name").getValue(String.class);
-                    phoneNum = snapshot.child("number").getValue(String.class);
-                    // String num=snapshot.child("number").getValue().toString();
-                    age = snapshot.child("age").getValue(String.class);
-                    manager=snapshot.child("manager").getValue(String.class);
-                    if(r.getId().equals(manager)) {
-                        workerdetail.add(new workerDetail(name, phoneNum, age));
-                        //adapter에서 list 쓰기
-                        adapter = new MyAdapter(getActivity(), workerdetail);
-                        list.setAdapter(adapter);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        };
-        data.addValueEventListener(postListener);
-
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
-
-
-
 }

@@ -18,7 +18,6 @@ import android.text.Html;
 
 public class Weather extends Fragment {
 
-
    TextView cityField, detailsField, currentTemperatureField, humidity_field, pressure_field, weatherIcon, updatedField;
     Typeface weatherFont;
 
@@ -43,8 +42,6 @@ public class Weather extends Fragment {
         return view;
 
     }
-
-
         Function.placeIdTask asyncTask = new Function.placeIdTask(new Function.AsyncResponse() {
             public void processFinish(String weather_city, String weather_description, String weather_temperature, String weather_humidity, String weather_pressure, String weather_updatedOn, String weather_iconText, String sun_rise) {
                 Log.d("test", "ㅇㅇ123emfjddhㅇ");

@@ -12,7 +12,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         try {
-            Thread.sleep(3000);
+            Thread.sleep(2000);
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();

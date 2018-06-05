@@ -34,6 +34,7 @@ public class Setting extends Fragment {
         button2.setOnClickListener(myListener);
         button3.setOnClickListener(myListener);
         button4.setOnClickListener(myListener);
+        Fragment frg = null;
 
         return view;
     }
@@ -61,10 +62,8 @@ public class Setting extends Fragment {
                     break;
                 case R.id.button4:
                     button4.setSelected(true);
-
                     moveButton4();
                     break;
-
 
             }
 

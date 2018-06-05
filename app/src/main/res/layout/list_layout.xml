@@ -17,22 +17,38 @@
             android:id="@+id/text_name"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:hint="show "/>
+
+        <TextView
+            android:id="@+id/pulse"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="115dp"
+            android:layout_marginTop="-19dp"
+            android:hint="show "/>
+        <TextView
+            android:id="@+id/temp"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="190dp"
+            android:layout_marginTop="-19dp"
+            android:hint="show "/>
+
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="240dp"
+            android:layout_marginLeft="250dp"
             android:layout_marginTop="-25dp" />
 
         <Button
             android:id="@+id/personalBtn"
             android:layout_width="40dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="305dp"
-            android:layout_marginTop="-30dp"
+            android:layout_marginLeft="309dp"
+            android:layout_marginTop="-34dp"
             android:background="@drawable/image" />
 
     </LinearLayout>

@@ -1,11 +1,15 @@
 package com.java.bodysignal;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -23,8 +27,6 @@ public class RegisterActivity extends AppCompatActivity {
     // firebase
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +38,16 @@ public class RegisterActivity extends AppCompatActivity {
         pwd = (EditText) findViewById(R.id.editText3);
         checkpwd = (EditText) findViewById(R.id.editText4);
         btnRegister = (Button) findViewById(R.id.button);
+        RelativeLayout keyboard = (RelativeLayout) findViewById(R.id.keyboard);
 
+        keyboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            }
+        });
 
         btnRegister.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -51,7 +62,6 @@ public class RegisterActivity extends AppCompatActivity {
                 r.setName(sname);
                 r.setId(id);
                 r.setPassword(password);
-
 
                 if (password.equals(check)) {
                     if(sname.equals("")||id.equals("")) {

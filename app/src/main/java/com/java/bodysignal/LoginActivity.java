@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
@@ -49,7 +50,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText password;
     private Button login;
     private Button Register;
+
     ArrayList<registerDetail> loginArray;
+
     String newId,checkId,pwd,checkpwd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +75,16 @@ public class LoginActivity extends AppCompatActivity {
         newId = id.getText().toString();
         checkpwd = password.getText().toString();
         loginArray=new ArrayList<registerDetail>();
-        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        LinearLayout keyboard = (LinearLayout) findViewById(R.id.keyboard);
+        keyboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            }
+        });
 
         data.addValueEventListener(new ValueEventListener() {
 
@@ -82,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     checkId=snapshot.child("id").getValue(String.class);
                     pwd=snapshot.child("password").getValue(String.class);
-                        loginArray.add(new registerDetail(checkId,pwd));
+                    loginArray.add(new registerDetail(checkId,pwd));
                 }
 
             }
@@ -95,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
 
         login.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                hideKeyboard();
+
                 newId = id.getText().toString();
                 checkpwd = password.getText().toString();
                 registerDetail r = registerDetail.getRegisterObject();
@@ -201,8 +213,5 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
-    private void hideKeyboard() {
-        imm.hideSoftInputFromWindow(id.getWindowToken(), 0);
-        imm.hideSoftInputFromWindow(password.getWindowToken(), 0);
-    }
+
 }

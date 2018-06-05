@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class MyAdapter extends BaseAdapter {
 
     private Context context;
-    private TextView name;
+    private TextView name,pulse,temperature;
     private ArrayList<workerDetail> workerdetail;
     private LayoutInflater inflater;
 
@@ -22,11 +22,11 @@ public class MyAdapter extends BaseAdapter {
         this.context = c;
         this.workerdetail = worker;
 
-        inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+       inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
     @Override
     public int getCount() {
-        return workerdetail.size();
+          return workerdetail.size();
     }
 
     @Override
@@ -42,10 +42,16 @@ public class MyAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         if(view == null){
-            view = inflater.inflate(R.layout.list_layout,viewGroup,false);
+          view = inflater.inflate(R.layout.list_layout,viewGroup,false);
         }
         name = (TextView) view.findViewById(R.id.text_name);
         name.setText(workerdetail.get(i).getName());
+
+        pulse = (TextView)view.findViewById(R.id.pulse);
+        pulse.setText(workerdetail.get(i).getPulse());
+
+        temperature = (TextView)view.findViewById(R.id.temp);
+        temperature.setText(workerdetail.get(i).getTemperature());
         return view;
     }
 }

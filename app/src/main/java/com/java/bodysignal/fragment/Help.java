@@ -13,7 +13,6 @@ import com.java.bodysignal.R;
 
 
 public class Help extends Fragment {
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {

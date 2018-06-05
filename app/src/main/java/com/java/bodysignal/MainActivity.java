@@ -10,23 +10,39 @@ import android.os.Bundle;
 
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Toast;
 
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.java.bodysignal.fragment.Home;
 import com.java.bodysignal.fragment.Setting;
 import com.java.bodysignal.fragment.Weather;
 import com.java.bodysignal.fragment.allChart;
+import com.java.bodysignal.models.MyAdapter;
+import com.java.bodysignal.models.registerDetail;
+import com.java.bodysignal.models.workerDetail;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.UUID;
 
 
 public class MainActivity extends AppCompatActivity {
+
+
+    public DatabaseReference mDatabase= FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference data=mDatabase.child("worker");
+    private ChildEventListener mChildEventListener;
 
     static final int REQUEST_ENABLE_BT = 10;
     int mPariedDeviceCount = 0;
@@ -38,23 +54,56 @@ public class MainActivity extends AppCompatActivity {
     OutputStream mOutputStream = null;
     InputStream mInputStream = null;
     Thread mWorkerThread = null;
+
     byte[] readBuffer;
     int readBufferPosition;
+
     String mStrDelimiter = "\n";
     char mCharDelimiter =  '\n';
+    String newtemp="" ;
+    String newpulse="" ;
+    String name,age,phoneNum,manager,temp,pulse;
+    ListView list;
+    MyAdapter adapter;
+
+    final registerDetail r= registerDetail.getRegisterObject();
+    final workerDetail w = workerDetail.getWorkerObject();
+    public ArrayList<workerDetail> workerdetail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        checkBluetooth();
+
         setContentView(R.layout.activity_main);
+        workerdetail =new ArrayList<workerDetail>();
+        data.addValueEventListener(new ValueEventListener()  {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                workerdetail.clear();
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    name = snapshot.child("name").getValue(String.class);
+                    phoneNum = snapshot.child("number").getValue(String.class);
+                    age = snapshot.child("age").getValue(String.class);
+                    manager=snapshot.child("manager").getValue(String.class);
+                    temp=snapshot.child("temperature").getValue(String.class);
+                    pulse=snapshot.child("pulse").getValue(String.class);
 
-
-        getFragmentManager().beginTransaction().replace(R.id.main_frame,new Home()).commit();
+                    if(r.getId().equals(manager)) {
+                        workerdetail.add(new workerDetail(name, phoneNum, age,temp,pulse));
+                    }
+                }
+                getFragmentManager().beginTransaction().replace(R.id.main_frame,new Home()).commit();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
 
         LinearLayout button1 = (LinearLayout) findViewById(R.id.button1);
         LinearLayout button2 = (LinearLayout) findViewById(R.id.button2);
         LinearLayout button3 = (LinearLayout) findViewById(R.id.button3);
         LinearLayout button4 = (LinearLayout) findViewById(R.id.button4);
-        checkBluetooth();
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,72 +142,87 @@ public class MainActivity extends AppCompatActivity {
             // getBytes() : String을 byte로 변환
             // OutputStream.write : 데이터를 쓸때는 write(byte[]) 메소드를 사용함. byte[] 안에 있는 데이터를 한번에 기록해 준다.
             mOutputStream.write(s.getBytes());  // 문자열 전송.
+            Toast.makeText(this.getApplicationContext(), " 전송되었습니다 ", Toast.LENGTH_LONG).show();
+
         }catch(Exception e) {  // 문자열 전송 도중 오류가 발생한 경우
             Toast.makeText(this.getApplicationContext(), "데이터 전송중 오류가 발생", Toast.LENGTH_LONG).show();
 
         }
     }
 
-
-
     // 데이터 수신(쓰레드 사용 수신된 메시지를 계속 검사함)
-    private  void beginListenForData() {
+    private  void beginListenForData () {
         final Handler handler = new Handler();
 
         readBufferPosition = 0;                 // 버퍼 내 수신 문자 저장 위치.
         readBuffer = new byte[1024];            // 수신 버퍼.
-
-        // 문자열 수신 쓰레드.
-        mWorkerThread = new Thread(new Runnable()
-        {
+        mWorkerThread = new Thread(new Runnable() {
             @Override
             public void run() {
+
                 // interrupt() 메소드를 이용 스레드를 종료시키는 예제이다.
                 // interrupt() 메소드는 하던 일을 멈추는 메소드이다.
                 // isInterrupted() 메소드를 사용하여 멈추었을 경우 반복문을 나가서 스레드가 종료하게 된다.
-                while(!Thread.currentThread().isInterrupted()) {
+
+                while (!Thread.currentThread().isInterrupted()) {
                     try {
+
                         // InputStream.available() : 다른 스레드에서 blocking 하기 전까지 읽은 수 있는 문자열 개수를 반환함.
                         int byteAvailable = mInputStream.available();   // 수신 데이터 확인
-                        if(byteAvailable > 0) {                        // 데이터가 수신된 경우.
+
+                        if (byteAvailable > 0) {                        // 데이터가 수신된 경우.
+
                             byte[] packetBytes = new byte[byteAvailable];
                             // read(buf[]) : 입력스트림에서 buf[] 크기만큼 읽어서 저장 없을 경우에 -1 리턴.
+
                             mInputStream.read(packetBytes);
-                            for(int i=0; i<byteAvailable; i++) {
+                            for (int i = 0; i < byteAvailable; i++) {
                                 byte b = packetBytes[i];
-                                if(b == mCharDelimiter) {
+                                if (b == mCharDelimiter) {
+
                                     byte[] encodedBytes = new byte[readBufferPosition];
                                     //  System.arraycopy(복사할 배열, 복사시작점, 복사된 배열, 붙이기 시작점, 복사할 개수)
                                     //  readBuffer 배열을 처음 부터 끝까지 encodedBytes 배열로 복사.
                                     System.arraycopy(readBuffer, 0, encodedBytes, 0, encodedBytes.length);
 
                                     final String data = new String(encodedBytes, "US-ASCII");
+                                   // Log.d("hohoq", data);
                                     readBufferPosition = 0;
+                                    handler.post(new Runnable() {
 
-                                    handler.post(new Runnable(){
                                         // 수신된 문자열 데이터에 대한 처리.
                                         @Override
+
                                         public void run() {
+                                            Scanner sc = new Scanner(data).useDelimiter(",");
+                                            int count=0;
+                                            while(sc.hasNext()) {
+                                               if(count==0){count++;}
+                                                if(count==1){newtemp = sc.next();count++;}
+                                                newpulse = sc.next();
+                                                newpulse = newpulse.replaceAll("(\\r|\\n)", "");
+                                                Log.d("pulse",newpulse);
+                                            }
+                                            workerDataChange();
 
-                                        }
-
+                                            }
                                     });
-                                }
-                                else {
+                                } else {
                                     readBuffer[readBufferPosition++] = b;
                                 }
                             }
                         }
 
                     } catch (Exception e) {    // 데이터 수신 중 오류 발생.
-                       // Toast.makeText(this.getApplicationContext(), "데이터 수신 중 오류가 발생 했습니다.", Toast.LENGTH_LONG).show();
-
+                        //Toast.makeText(this.getApplicationContext(), "데이터 수신 중 오류가 발생 했습니다.", Toast.LENGTH_LONG).show();
+                        Log.d("wo2e", "exception");
                     }
+
+
                 }
             }
-
         });
-
+        mWorkerThread.start();
     }
 
     public void checkBluetooth() {
@@ -191,7 +255,6 @@ public class MainActivity extends AppCompatActivity {
                 selectDevice();
         }
     }
-
     // 블루투스 지원하며 활성 상태인 경우.
     public void selectDevice() {
         // 블루투스 디바이스는 연결해서 사용하기 전에 먼저 페어링 되어야만 한다
@@ -205,7 +268,6 @@ public class MainActivity extends AppCompatActivity {
         }
         connectToSelectedDevice("test_01");
     }
-
     //블루투스 디바이스 설정
     private  void connectToSelectedDevice(String selectedDeviceName) {
         // BluetoothDevice 원격 블루투스 기기를 나타냄.
@@ -229,13 +291,11 @@ public class MainActivity extends AppCompatActivity {
 
             // 데이터 수신 준비.
             beginListenForData();
-
         }catch(Exception e) { // 블루투스 연결 중 오류 발생
             Toast.makeText(this.getApplicationContext(), "블루투스 연결 중 오류가 발생했습니다.", Toast.LENGTH_LONG).show();
 
         }
     }
-
 
     public BluetoothDevice getDeviceFromBondedList(String name) {
 
@@ -254,5 +314,16 @@ public class MainActivity extends AppCompatActivity {
         return selectedDevice;
     }
 
+    public void workerDataChange(){
+
+        //try {
+         //   Thread.sleep(30000);
+            mDatabase.child("worker").child("이정환/pulse").setValue(newpulse);
+            mDatabase.child("worker").child("이정환/temperature").setValue(newtemp);
+       // } catch (InterruptedException e) {
+        //    e.printStackTrace();
+      //  }
+
+    }
 
 }
