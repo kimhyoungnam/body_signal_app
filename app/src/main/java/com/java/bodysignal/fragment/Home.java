@@ -58,14 +58,13 @@ public class Home extends Fragment {
 
     public Button breakbtn,emergency;
 
-    private Timer update;
-
     ListView list;
     public MyAdapter adapter;
 
     final registerDetail r= registerDetail.getRegisterObject();
     final workerDetail w = workerDetail.getWorkerObject();
     public ArrayList<workerDetail> workerdetail;
+    Thread t=null;
     String name,age,phoneNum,manager,temp,pulse;
 
     @Override
@@ -88,14 +87,20 @@ public class Home extends Fragment {
         list.setAdapter(adapter);
 
         breakbtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+                t =(((MainActivity)getActivity())).mWorkerThread;
+                if( t!=null){t.interrupt();}
                 showMessage();
+
             }
         });
         emergency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                t =(((MainActivity)getActivity())).mWorkerThread;
+                if( t!=null){t.interrupt();}
                 Context c = view.getContext();
                 Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:119"));
                 try {
@@ -140,4 +145,6 @@ public class Home extends Fragment {
     public void onDestroy() {
         super.onDestroy();
     }
+
+
 }

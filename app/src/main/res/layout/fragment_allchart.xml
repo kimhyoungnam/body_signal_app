@@ -14,7 +14,7 @@
             android:id="@+id/chart_line"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:orientation="vertical">
 
             <LinearLayout
@@ -26,8 +26,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="110dp"
-                    android:layout_marginTop="60dp"
-                    android:background="@drawable/border"
+                    android:layout_marginTop="10dp"
+
                     android:orientation="vertical"
                     android:text="맥박"
                     android:textSize="25dp"
@@ -38,7 +38,7 @@
                     android:layout_width="110dp"
                     android:layout_height="33dp"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/border"
                     android:orientation="vertical"
                     android:hint="      88"
@@ -56,8 +56,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="110dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/border"
+                    android:layout_marginTop="5dp"
                     android:text="체온"
                     android:textSize="25dp"
                     android:textStyle="bold" />
@@ -67,13 +66,14 @@
                     android:layout_width="110dp"
                     android:layout_height="33dp"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="40dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/border"
                     android:orientation="vertical"
                     android:hint="     36.5"
                     android:textSize="25dp"
                     android:textStyle="bold" />
+
 
             </LinearLayout>
 
@@ -87,6 +87,7 @@
 
         </LinearLayout>
 
-    </LinearLayout>
+
+</LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

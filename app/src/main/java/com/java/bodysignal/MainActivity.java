@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     BluetoothSocket mSocket = null;
     OutputStream mOutputStream = null;
     InputStream mInputStream = null;
-    Thread mWorkerThread = null;
+    public Thread mWorkerThread = null;
 
     byte[] readBuffer;
     int readBufferPosition;
@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
     final registerDetail r= registerDetail.getRegisterObject();
     final workerDetail w = workerDetail.getWorkerObject();
     public ArrayList<workerDetail> workerdetail;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
                     manager=snapshot.child("manager").getValue(String.class);
                     temp=snapshot.child("temperature").getValue(String.class);
                     pulse=snapshot.child("pulse").getValue(String.class);
-
                     if(r.getId().equals(manager)) {
                         workerdetail.add(new workerDetail(name, phoneNum, age,temp,pulse));
                     }
@@ -108,22 +108,20 @@ public class MainActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                getFragmentManager().beginTransaction().replace(R.id.main_frame,new Home()).commit();
-
+              getFragmentManager().beginTransaction().replace(R.id.main_frame,new Home()).commit();
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().replace(R.id.main_frame,new Weather()).commit();
 
+                    getFragmentManager().beginTransaction().replace(R.id.main_frame,new Weather()).commit();
             }
         });
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().replace(R.id.main_frame,new allChart()).commit();
+             getFragmentManager().beginTransaction().replace(R.id.main_frame,new allChart()).commit();
             }
         });
         button4.setOnClickListener(new View.OnClickListener() {
@@ -151,8 +149,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // 데이터 수신(쓰레드 사용 수신된 메시지를 계속 검사함)
-    private  void beginListenForData () {
-        final Handler handler = new Handler();
+    public void beginListenForData () throws InterruptedException {
+            final Handler handler = new Handler();
 
         readBufferPosition = 0;                 // 버퍼 내 수신 문자 저장 위치.
         readBuffer = new byte[1024];            // 수신 버퍼.
@@ -201,11 +199,19 @@ public class MainActivity extends AppCompatActivity {
                                                 if(count==1){newtemp = sc.next();count++;}
                                                 newpulse = sc.next();
                                                 newpulse = newpulse.replaceAll("(\\r|\\n)", "");
-                                                Log.d("pulse",newpulse);
-                                            }
-                                            workerDataChange();
+                                                Log.d("pulse2",newpulse);
 
                                             }
+                                            int i=0;
+                                            while(true) {
+                                                workerDataChange();
+                                                i++;
+                                               if(i==3) {
+                                                    mWorkerThread.interrupt();
+                                                    break;
+                                                }
+                                            }
+                                        }
                                     });
                                 } else {
                                     readBuffer[readBufferPosition++] = b;
@@ -223,6 +229,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         mWorkerThread.start();
+
+
     }
 
     public void checkBluetooth() {
@@ -316,13 +324,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void workerDataChange(){
 
-        //try {
-         //   Thread.sleep(30000);
+
             mDatabase.child("worker").child("이정환/pulse").setValue(newpulse);
             mDatabase.child("worker").child("이정환/temperature").setValue(newtemp);
-       // } catch (InterruptedException e) {
-        //    e.printStackTrace();
-      //  }
+
 
     }
 

@@ -1,5 +1,6 @@
 package com.java.bodysignal.fragment;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -117,13 +118,13 @@ public class allChart extends Fragment {
 
         multiRenderer.setXLabels(0);
 
-        multiRenderer.setChartTitle("라인그래프");
-
         multiRenderer.setXTitle("시간");
 
         multiRenderer.setYTitle("수위");
 
         multiRenderer.setZoomButtonsVisible(true);
+
+
 
         //Setting background color of the graph to transparent
         multiRenderer.setBackgroundColor(Color.TRANSPARENT);
